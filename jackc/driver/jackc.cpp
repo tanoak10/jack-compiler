@@ -1,7 +1,6 @@
 #include "Analyzer.h"
 #include "CodeGen.h"
 #include "Parser.h"
-#include "Scanner.h"
 #include <iostream>
 #include <string>
 #include <vector>

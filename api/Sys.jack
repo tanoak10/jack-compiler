@@ -1,7 +1,7 @@
 class Sys 
 {
-    /** µ÷ÓÃÆäËûOSÀàµÄinitº¯Êı, ½ø¶øµ÷ÓÃMain.main()º¯Êı. */
-    function void init() 
+    /** è°ƒç”¨å…¶ä»–OSç±»çš„initå‡½æ•°, è¿›è€Œè°ƒç”¨Main.main()å‡½æ•°. */
+    function void init()
     {
         Memory.init();
         Main.main();
@@ -12,19 +12,19 @@ class Sys
         Keyboard.init();
         Main.main();
         Sys.halt();
-     */   
+     */
         return;
     }
 
-    /** ÖĞÖ¹³ÌĞòÖ´ĞĞ */
-    function void halt() 
+    /** ä¸­æ­¢ç¨‹åºæ‰§è¡Œ */
+    function void halt()
     {
         Output.printString("Program ended!");
         return;
     }
 
-    /** µÈ´ı´óÔ¼durationºÁÃëºó·µ»Ø */
-    function void wait(int duration) 
+    /** ç­‰å¾…å¤§çº¦durationæ¯«ç§’åè¿”å› */
+    function void wait(int duration)
     {
         int temp;
         if(duration < 0)
@@ -43,7 +43,7 @@ class Sys
         return;
     }
 
-    /** ÔÚÆÁÄ»ÉÏ´òÓ¡´íÎó´úÂë, ²¢ÖĞÖ¹³ÌĞòÖ´ĞĞ */
+    /** åœ¨å±å¹•ä¸Šæ‰“å°é”™è¯¯ä»£ç , å¹¶ä¸­æ­¢ç¨‹åºæ‰§è¡Œ */
     function void error(int errorCode) 
     {
         String s;

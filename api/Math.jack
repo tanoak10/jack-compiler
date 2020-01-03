@@ -1,13 +1,13 @@
 class Math 
 {
-    /** ½ö¹©ÄÚ²¿Ê¹ÓÃ */
-    function void init() 
+    /** ä»…ä¾›å†…éƒ¨ä½¿ç”¨ */
+    function void init()
     {
 		return;
     }
 
-    /** ·µ»ØxµÄ¾ø¶ÔÖµ    */
-    function int abs(int x) 
+    /** è¿”å›xçš„ç»å¯¹å€¼    */
+    function int abs(int x)
     {
 		int absNum;
 		if (x < 0)
@@ -16,25 +16,25 @@ class Math
 		}
 		else
         {
-			absNum = x; 
+			absNum = x;
 		}
 		return absNum;
     }
 
-    /** ·µ»ØxºÍyµÄ³Ë»ı */
-    function int multiply(int x, int y) 
+    /** è¿”å›xå’Œyçš„ä¹˜ç§¯ */
+    function int multiply(int x, int y)
     {
 		int sum;
 		int shiftedX,functionY;
 		int flag,j;
 		boolean WhetherNeg;
-		
+
         sum = 0;
 		shiftedX = Math.abs(x);
 		functionY= Math.abs(y);
 		flag = 1;
 		j = 0;
-		if ((x == 0) | (y == 0)) 
+		if ((x == 0) | (y == 0))
         {
 			return 0;
 		}
@@ -56,7 +56,7 @@ class Math
 		return sum;
 	}
 
-    /** ·µ»Øx/yµÄÕûÊı²¿·Ö(x>0, y>0) */
+    /** è¿”å›x/yçš„æ•´æ•°éƒ¨åˆ†(x>0, y>0) */
 	function int div(int x, int y) {
 		int q, qy;
 		if((y < 0) | (y > x))
@@ -74,9 +74,9 @@ class Math
 			return q + q + 1;
 		}
 	}
-	
-    /** ·µ»Øx/yµÄÕûÊıÖµ    */
-	function int divide(int x, int y) 
+
+    /** è¿”å›x/yçš„æ•´æ•°å€¼    */
+	function int divide(int x, int y)
     {
 		int answer;
 		int absX,absY;
@@ -96,7 +96,7 @@ class Math
 		return answer;
 	}
 
-    /** ·µ»Øx <= 2^nÖĞÖ¸ÊınµÄÖµ */
+    /** è¿”å›x <= 2^nä¸­æŒ‡æ•°nçš„å€¼ */
 	function int logTwo(int x)
     {
 		int powerTwo,flag;
@@ -113,16 +113,16 @@ class Math
 		}
 		return flag;
 	}
-	
-    /** ·µ»ØxµÄy´Î·½ */
+
+    /** è¿”å›xçš„yæ¬¡æ–¹ */
 	function int power(int x, int y)
     {
 		int flag;
 		int result;
-		
+
         flag = y;
 		result = 1;
-		
+
         if(y == 0)
         {
 			return 1;
@@ -132,15 +132,15 @@ class Math
 			result = Math.multiply(result, x);
 			flag = flag - 1;
 		}
-		return result; 
-	}	
-	
-    /** ·µ»ØxµÄÆ½·½¸ùµÄÕûÊı²¿·Ö */
-    function int sqrt(int x) 
+		return result;
+	}
+
+    /** è¿”å›xçš„å¹³æ–¹æ ¹çš„æ•´æ•°éƒ¨åˆ† */
+    function int sqrt(int x)
     {
 		int y, j, flag, powerJ;
         int n, halfN;
-		
+
         y = 0;
 		n = Math.logTwo(x);
 		halfN = Math.divide(n,2);
@@ -163,8 +163,8 @@ class Math
 		return y;
     }
 
-    /** ·µ»ØxºÍyÖĞµÄ½Ï´óÖµ */
-    function int max(int a, int b) 
+    /** è¿”å›xå’Œyä¸­çš„è¾ƒå¤§å€¼ */
+    function int max(int a, int b)
     {
 		if (a > b)
         {
@@ -176,7 +176,7 @@ class Math
 		}
     }
 
-    /** ·µ»ØxºÍyÖĞµÄ½ÏĞ¡Öµ */
+    /** è¿”å›xå’Œyä¸­çš„è¾ƒå°å€¼ */
     function int min(int a, int b) 
     {
 		if (a < b)

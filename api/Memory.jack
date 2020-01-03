@@ -1,41 +1,41 @@
 class Memory
 {
-    static Array freelist;      // ´ËÊ±freelistÊµ¼ÊÉÏ¾ÍÊÇ¸öÖ¸Õë
+    static Array freelist;      // æ­¤æ—¶freelistå®é™…ä¸Šå°±æ˜¯ä¸ªæŒ‡é’ˆ
 
-    /** ³õÊ¼»¯ÄÚ´æ²ÎÊı */
-    function void init() 
+    /** åˆå§‹åŒ–å†…å­˜å‚æ•° */
+    function void init()
     {
         freelist = 0;
         freelist[2048] = 14334; // 14334 = 37FE(H)
         freelist[2049] = 2050;  // 2050 = 802(H)
         return;
     }
-    
-    /** ·µ»ØµØÖ·ÎªaddressµÄÄÚ´æµ¥Ôª */
-    function int peek(int address) 
+
+    /** è¿”å›åœ°å€ä¸ºaddressçš„å†…å­˜å•å…ƒ */
+    function int peek(int address)
     {
         return freelist[address];
     }
 
-    /** ½«ÕûÊıÖµvalue´æÈëµØÖ·ÎªaddressµÄÄÚ´æµ¥ÔªÖĞÉèÖÃÔÚÕâ¸öµØÖ·ÉÏµÄÖ÷ÄÚ´æµÄÖµ */
-    function void poke(int address, int value) 
+    /** å°†æ•´æ•°å€¼valueå­˜å…¥åœ°å€ä¸ºaddressçš„å†…å­˜å•å…ƒä¸­è®¾ç½®åœ¨è¿™ä¸ªåœ°å€ä¸Šçš„ä¸»å†…å­˜çš„å€¼ */
+    function void poke(int address, int value)
     {
         freelist[address] = value;
         return;
     }
-    
+
    function int alloc(int size)
     {
         Array freeBlock;
         if (size < 1)
         {
             Sys.error(5);
-        }        
+        }
         freeBlock = 2048;
         while (freeBlock[0] < size)
         {
             freeBlock = freeBlock[1];
-            
+
             /*
             if (freeBlock == 0)
             {
@@ -55,14 +55,14 @@ class Memory
         }
         if (freeBlock[0] > size + 2)
         {
-            freeBlock[size + 2] = freeBlock[0] - size - 2;      // ¸üĞÂÏÂÒ»¸öblockµÄlength
-            if (freeBlock[1] == freeBlock + 2)                  // Èç¹ûµ±Ç°blockÊÇ×îºóÒ»¸öblock
+            freeBlock[size + 2] = freeBlock[0] - size - 2;      // æ›´æ–°ä¸‹ä¸€ä¸ªblockçš„length
+            if (freeBlock[1] == freeBlock + 2)                  // å¦‚æœå½“å‰blockæ˜¯æœ€åä¸€ä¸ªblock
             {
-                freeBlock[size + 3] = freeBlock + size + 4;     // ÉèÖÃÏÂÒ»¸öblockÎª×îºóÒ»¸öblock
+                freeBlock[size + 3] = freeBlock + size + 4;     // è®¾ç½®ä¸‹ä¸€ä¸ªblockä¸ºæœ€åä¸€ä¸ªblock
             }
             else
             {
-                freeBlock[size + 3] = freeBlock[1];             // ÉèÖÃÏÂÒ»¸öblockÖ¸ÏòÏÂÏÂ¸öblock
+                freeBlock[size + 3] = freeBlock[1];             // è®¾ç½®ä¸‹ä¸€ä¸ªblockæŒ‡å‘ä¸‹ä¸‹ä¸ªblock
             }
             freeBlock[1] = freeBlock + size + 2;
         }
@@ -70,7 +70,7 @@ class Memory
         //initBlock(freeBlock + 2);
         return (freeBlock + 2);
     }
-    
+
     /*
     function void initBlock(int block)
     {
@@ -84,9 +84,9 @@ class Memory
         }
     }
     */
-    
+
     /*
-    // ¿ÕÏĞÇøËéÆ¬ÕûÀí
+    // ç©ºé—²åŒºç¢ç‰‡æ•´ç†
     function void clearBlock()
     {
         Array currentNodePointer;
@@ -112,26 +112,26 @@ class Memory
         }
     }
     */
-    
+
     function void deAlloc(int object)
     {
         Array currentNodePointer;
         Array nextNodePointer;
-        
+
         currentNodePointer = object - 2;
         nextNodePointer = currentNodePointer[1];
-        if (nextNodePointer[0] == 0)       // Èç¹ûnext²»ÊÇ¿ÕÏĞÇø, Ö±½ÓĞŞ¸Älength¾ÍĞĞÁË
+        if (nextNodePointer[0] == 0)       // å¦‚æœnextä¸æ˜¯ç©ºé—²åŒº, ç›´æ¥ä¿®æ”¹lengthå°±è¡Œäº†
         {
             currentNodePointer[0] = currentNodePointer[1] - currentNodePointer - 2;
         }
-        else                                // Èç¹ûnextÊÇ¿ÕÏĞÇø, ĞèÒªºÏ²¢¿ÕÏĞÇø
+        else                                // å¦‚æœnextæ˜¯ç©ºé—²åŒº, éœ€è¦åˆå¹¶ç©ºé—²åŒº
         {
             currentNodePointer[0] = currentNodePointer[1] - currentNodePointer + nextNodePointer[0];
-            if (nextNodePointer[1] == nextNodePointer + 2)        // Èç¹ûºóÒ»¸öblockÊÇ×îºóÒ»¸öblock, µ±Ç°blockÖ¸Ïò¿Õ
+            if (nextNodePointer[1] == nextNodePointer + 2)        // å¦‚æœåä¸€ä¸ªblockæ˜¯æœ€åä¸€ä¸ªblock, å½“å‰blockæŒ‡å‘ç©º
             {
-                currentNodePointer[1] = currentNodePointer + 2;     
+                currentNodePointer[1] = currentNodePointer + 2;
             }
-            else                                                  // ·ñÔò°Ñµ±Ç°blockÖ¸ÏòºóÒ»¸öblockÖ¸ÏòµÄblock
+            else                                                  // å¦åˆ™æŠŠå½“å‰blockæŒ‡å‘åä¸€ä¸ªblockæŒ‡å‘çš„block
             {
                currentNodePointer[1] = nextNodePointer[1];
             }

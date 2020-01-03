@@ -1,12 +1,12 @@
 class String 
 {
-    field Array a;            // ×Ö·û´®±¾ÉíÊÇÒ»¸öÊı×é, aÊÇÕâ¸öÊı×éµÄÒıÓÃ
-    field int stringLength;   // µ±Ç°×Ö·û´®µÄ³¤¶È
-    field boolean negFlag;    // ÅĞ¶ÏÊÇ·ñÎª¸ºÊı
-    field int allocLength;    // ×î´ó×Ö·û´®³¤¶È
+    field Array a;            // å­—ç¬¦ä¸²æœ¬èº«æ˜¯ä¸€ä¸ªæ•°ç»„, aæ˜¯è¿™ä¸ªæ•°ç»„çš„å¼•ç”¨
+    field int stringLength;   // å½“å‰å­—ç¬¦ä¸²çš„é•¿åº¦
+    field boolean negFlag;    // åˆ¤æ–­æ˜¯å¦ä¸ºè´Ÿæ•°
+    field int allocLength;    // æœ€å¤§å­—ç¬¦ä¸²é•¿åº¦
 
-    /** ¹¹ÔìÒ»¸ö³¤¶ÈÎªmaxLengthµÄ×Ö·û´®  */
-    constructor String new(int maxLength) 
+    /** æ„é€ ä¸€ä¸ªé•¿åº¦ä¸ºmaxLengthçš„å­—ç¬¦ä¸²  */
+    constructor String new(int maxLength)
     {
         if (maxLength < 1)
         {
@@ -18,36 +18,36 @@ class String
         stringLength = 0;
         return this;
     }
-    
-    /** Ïú»Ù×Ö·û´®²¢ÊÍ·ÅÄÚ´æ */
-    method void dispose() 
+
+    /** é”€æ¯å­—ç¬¦ä¸²å¹¶é‡Šæ”¾å†…å­˜ */
+    method void dispose()
     {
         a.dispose();
         return;
     }
 
-    method int length() 
+    method int length()
     {
         return stringLength;
     }
 
-    /** ·µ»Ø×Ö·û´®µÚj¸öÎ»ÖÃÉÏµÄ×Ö·û */
-    method char charAt(int j) 
+    /** è¿”å›å­—ç¬¦ä¸²ç¬¬jä¸ªä½ç½®ä¸Šçš„å­—ç¬¦ */
+    method char charAt(int j)
     {
         char c;
         c = a[j];
         return c;
     }
 
-    /** ½«×Ö·û´®ÖĞµÚj¸öÔªËØÖÃÎª×Ö·ûc */
-    method void setCharAt(int j, char c) 
+    /** å°†å­—ç¬¦ä¸²ä¸­ç¬¬jä¸ªå…ƒç´ ç½®ä¸ºå­—ç¬¦c */
+    method void setCharAt(int j, char c)
     {
         a[j] = c;
         return;
     }
 
-    /** ÔÚ×Ö·û´®Ä©Î²×·¼Ó×Ö·ûc²¢·µ»ØÕû¸ö×Ö·û´® */
-    method String appendChar(char c) 
+    /** åœ¨å­—ç¬¦ä¸²æœ«å°¾è¿½åŠ å­—ç¬¦cå¹¶è¿”å›æ•´ä¸ªå­—ç¬¦ä¸² */
+    method String appendChar(char c)
     {
         int length;
         if(stringLength == allocLength)
@@ -60,8 +60,8 @@ class String
         return this;
     }
 
-    /** É¾³ı×Ö·û´®ÖĞµÄ×îºóÒ»¸ö×Ö·û */
-    method void eraseLastChar() 
+    /** åˆ é™¤å­—ç¬¦ä¸²ä¸­çš„æœ€åä¸€ä¸ªå­—ç¬¦ */
+    method void eraseLastChar()
     {
         int length;
         length = stringLength;
@@ -69,13 +69,13 @@ class String
         return;
     }
 
-    /** ´Ó×î×ó±ß¿ªÊ¼Ö±µ½Óöµ½·ÇÊı×Ö×Ö·ûÎªÖ¹µÄ×Ö´®µÄÕûÊıÖµ */
-    method int intValue() 
+    /** ä»æœ€å·¦è¾¹å¼€å§‹ç›´åˆ°é‡åˆ°éæ•°å­—å­—ç¬¦ä¸ºæ­¢çš„å­—ä¸²çš„æ•´æ•°å€¼ */
+    method int intValue()
     {
         int length, i, result;
         int temp;
-        boolean flag;   // ÅĞ¶ÏÊÇ·ñÎª¸ºÊı
-        
+        boolean flag;   // åˆ¤æ–­æ˜¯å¦ä¸ºè´Ÿæ•°
+
         flag = false;
         i = 0;
         length = stringLength;
@@ -88,7 +88,7 @@ class String
         while (i < length)
         {
             if ((a[i] > 47) & (a[i] < 58))
-            {            
+            {
                 temp = a[i] - 48;
                 result = Math.multiply(result, 10) + temp;
                 i = i + 1;
@@ -109,13 +109,13 @@ class String
         return result;
     }
 
-    /** ÒÔ×Ö·û´®ĞÎÊ½±£´ænumberËù´ú±íµÄÕûÊı */
-    method void setInt(int number) 
+    /** ä»¥å­—ç¬¦ä¸²å½¢å¼ä¿å­˜numberæ‰€ä»£è¡¨çš„æ•´æ•° */
+    method void setInt(int number)
     {
         int lastDigit;
         int divNumber, tenNumber;
         int c;
-        
+
         stringLength = 0;
         if (number < 0)
         {
@@ -143,12 +143,12 @@ class String
         return;
     }
 
-    /** ·µ»Ø»»ĞĞ·û */
+    /** è¿”å›æ¢è¡Œç¬¦ */
     function char newLine() {
         return 10;
     }
 
-    /** ·µ»ØË«ÒıºÅ×Ö·û */
+    /** è¿”å›åŒå¼•å·å­—ç¬¦ */
     function char doubleQuote() {
         return 34;
     }
